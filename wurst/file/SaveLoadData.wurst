@@ -1,6 +1,5 @@
 package SaveLoadData
 import public FileIO
-import SyncSimple
 import ErrorHandling
 
 /* 	Comfort wrapper for player based, synced access to save data.
@@ -56,24 +55,3 @@ public function player.saveData(string slotName, ChunkedString data)
 
 	new File(slotName.endsWith(".pld") ? slotName : slotName + ".pld")
 		..write(this, data)..close()
-
-/** Asynchronously loads the data from the file of the given player
-	and then synchronizes it with all other players.
-	The listener will be invoked with the synced data string.  */
-public function player.loadData(string slotName, LoadListener listener)
-	if not this.isIngame()
-		listener.onLoad(LoadStatus.FAIL_PLAYER_OFFLINE, null)
-		return
-
-	let file = new File(slotName)
-	let buffer = file.read(this)
-	file.close()
-
-	buffer.sync(this) (syncedBuffer) ->
-		if not syncedBuffer.hasChunk()
-			listener.onLoad(LoadStatus.FAIL_FILE_EMPTY, syncedBuffer)
-		else if syncedBuffer.readChunk() == "-"
-			listener.onLoad(LoadStatus.FAIL_CANT_READ, syncedBuffer)
-		else
-			syncedBuffer.resetRead()
-			listener.onLoad(LoadStatus.SUCCESS, syncedBuffer)

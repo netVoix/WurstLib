@@ -83,9 +83,6 @@ public class EventData
 	static function getEventId() returns eventid
 		return GetTriggerEventId()
 
-	static function getIsKeyDown() returns boolean
-		return BlzGetTriggerPlayerIsKeyDown()
-
 	/** Check if current trigger event is Playerunit Event. */
 	static function isPlayerunitEvent() returns boolean
 		let eventId = EventData.getEventId().getHandleId()
@@ -225,9 +222,6 @@ public class EventData
 	static function getEventTargetUnit() returns unit
 		return GetEventTargetUnit()
 
-	static function getDamageTarget() returns unit
-		return BlzGetEventDamageTarget()
-
 	static function getLearnedSkill() returns int
 		return GetLearnedSkill()
 
@@ -262,14 +256,6 @@ public class EventData
 	static function getSpellTargetY() returns real
 		return GetSpellTargetY()
 
-	/** Return player's mouse X position on the terrain. Alternative: getMouseScreenVec2. */
-	static function getPlayerMouseX() returns real
-		return BlzGetTriggerPlayerMouseX()
-
-	/** Return player's mouse Y position on the terrain. Alternative: getMouseScreenVec2. */
-	static function getPlayerMouseY() returns real
-		return BlzGetTriggerPlayerMouseY()
-
 	static function getSaveFilename() returns string
 		return GetSaveBasicFilename()
 
@@ -278,12 +264,6 @@ public class EventData
 
 	static function getChatMessageMatched() returns string
 		return GetEventPlayerChatStringMatched()
-
-	static function getSyncPrefix() returns string
-		return BlzGetTriggerSyncPrefix()
-
-	static function getSyncData() returns string
-		return BlzGetTriggerSyncData()
 
 	static function getSoldItem() returns item
 		return GetSoldItem()
@@ -348,27 +328,6 @@ public class EventData
 	static function getOrderTargetWidget() returns widget
 		return GetOrderTarget()
 
-	static function getDamageType() returns damagetype
-		return BlzGetEventDamageType()
-
-	static function getDamageAttackType() returns attacktype
-		return BlzGetEventAttackType()
-
-	static function getDamageWeaponType() returns weapontype
-		return BlzGetEventWeaponType()
-
-	static function getTriggerKey() returns oskeytype
-		return BlzGetTriggerPlayerKey()
-
-	static function getTriggerMetaKey() returns OSKEY_META
-		return BlzGetTriggerPlayerMetaKey() castTo OSKEY_META
-
-	static function getTriggerFrame() returns framehandle
-		return BlzGetTriggerFrame()
-
-	static function getTriggerFrameEvent() returns frameeventtype
-		return BlzGetTriggerFrameEvent()
-
 	static function getOrderPos() returns vec2
 		return vec2(GetOrderPointX(), GetOrderPointY())
 
@@ -380,23 +339,3 @@ public class EventData
 
 	static function getSpellTargetPos() returns vec2
 		return EventData.getAbilityTargetPos()
-
-	/** Returns player's mouse position on screen. Do not confuse with getMouseLocationVec2. */
-	static function getMouseWorldPos() returns vec2
-		return vec2(BlzGetTriggerPlayerMouseX(), BlzGetTriggerPlayerMouseY())
-
-	/** Change damage from damage event.*/
-	static function setDamage(real damage)
-		BlzSetEventDamage(damage)
-
-	/** Change damage from damage event.*/
-	static function setDamageAttackType(attacktype attackType)
-		BlzSetEventAttackType(attackType)
-
-	/** Change damage from damage event.*/
-	static function setDamageType(damagetype damageType)
-		BlzSetEventDamageType(damageType)
-
-	/** Change damage from damage event.*/
-	static function setDamageWeaponType(weapontype weaponType)
-		BlzSetEventWeaponType(weaponType)

@@ -46,18 +46,6 @@ public class File
 	function close()
 		destroy this
 
-	function read(player p) returns ChunkedString
-		let out = new ChunkedString(DEFAULT_CHUNK_SIZE)
-		if localPlayer == p
-			readPreload(out)
-		return out
-
-	function readAsString(player p) returns string
-		let out = read(p)
-		let str = out.getUnsafeString()
-		destroy out
-		return str
-
 	private function writePreload(player p, ChunkedString buffer)
 		if localPlayer == p
 			PreloadGenClear()
@@ -73,19 +61,6 @@ public class File
 			Preload("\" )\nendfunction\nfunction a takes nothing returns nothing\n //")
 			PreloadGenEnd(this.filename)
 
-	private function readPreload(ChunkedString output)
-		Preloader(this.filename)
-
-		// Read the output
-		for i = 0 to CHUNKS_PER_FILE - 1
-			let chunk = BlzGetAbilityTooltip(DUMMY_ABIL_ID, i)
-
-			if chunk == ""
-				break
-
-			BlzSetAbilityTooltip(DUMMY_ABIL_ID, "", i)
-			output.append(chunk)
-
 
 	private static function validateInput(string content) returns string
 		for char in content
@@ -94,9 +69,6 @@ public class File
 			else if (char == "\"")
 				return char
 		return null
-
-init
-	CAN_READ_FILES = new File("FileTester.pld")..write(localPlayer, "test").readAsString(localPlayer) == "test"
 
 
 @compiletime function generateDummy()
