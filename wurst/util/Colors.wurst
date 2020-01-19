@@ -309,14 +309,11 @@ init
 	assertTrue("red".toColor() == color(255, 2, 2))
 	assertTrue("peanut".toColor() == color(164, 111, 51))
 	assertTrue("red".toPlayerColor() == PLAYER_COLOR_RED)
-	assertTrue("peanut".toPlayerColor() == PLAYER_COLOR_PEANUT)
 
 @Test public function testPlayerColorConversion()
 	assertTrue(PLAYER_COLOR_BLUE.toColor() == color(0,65,255))
 	assertTrue(PLAYER_COLOR_RED.toColor() == color(255, 2, 2))
-	assertTrue(PLAYER_COLOR_PEANUT.toColor() ==  color(164, 111, 51))
 	PLAYER_COLOR_RED.getName().assertEquals("red")
-	PLAYER_COLOR_COAL.getName().assertEquals("coal")
 
 @Test public function testPlayerFromColorName()
 	assertTrue(toPlayerFromColorName("red") == Player(0))

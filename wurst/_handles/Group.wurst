@@ -1,7 +1,6 @@
 package Group
 import NoWurst
 import Vectors
-import Player
 
 /** Use this group for your non-nested group enum calls
 	and then iterate through the group via **for from** or
@@ -32,12 +31,6 @@ public function group.enumUnitsOfType(string unitname, boolexpr filter)
 public function group.enumUnitsOfType(int id, boolexpr filter)
 	GroupEnumUnitsOfType(this, UnitId2String(id), filter)
 
-public function group.enumUnitsAll(boolexpr filter)
-	for i = 0 to bj_MAX_PLAYER_SLOTS - 1
-		ENUM_GROUP.enumUnitsOfPlayer(players[i], filter)
-		this.addGroup(ENUM_GROUP)
-	ENUM_GROUP.clear()
-
 public function group.clear()
 	GroupClear(this)
 
@@ -55,8 +48,13 @@ public function group.destr()
 public function group.contains(unit u) returns boolean
 	return IsUnitInGroup(u, this)
 
+var unitCounter = 0
 public function group.size() returns int
-	return BlzGroupGetSize(this)
+	unitCounter = 0
+	ForGroup(this) ->
+		unitCounter++
+
+	return unitCounter
 
 public function group.isEmpty() returns boolean
 	return not this.hasNext()
@@ -93,15 +91,6 @@ public function group.targetOrder(string order, widget targetWidget) returns boo
 
 public function group.targetOrder(int order, widget targetWidget) returns boolean
 	return GroupTargetOrderById(this, order, targetWidget)
-
-public function group.addGroup(group g) returns int
-	return BlzGroupAddGroupFast(g, this)
-
-public function group.removeGroup(group g) returns int
-	return BlzGroupRemoveGroupFast(g, this)
-
-public function group.getUnitAt(int index) returns unit
-	return BlzGroupUnitAt(this, index)
 
 /* Group iterator */
 

@@ -3,7 +3,6 @@ import NoWurst
 import Integer
 import Real
 import Boolean
-import BitSet
 import public ObjEditingNatives
 import String
 import public UnitObjEditing
@@ -441,7 +440,6 @@ public class AbilityDefinitionTaunt extends AbilityDefinition
 		addTooltipProperty("Max Units", lc)
 
 public class AbilityDefinitionPoisonArrows extends AbilityDefinition
-	private bitset stackingTypesSet = bitset(0)
 	construct(int newAbilityId)
 		super(newAbilityId, AbilityIds.poisonArrows)
 
@@ -458,13 +456,6 @@ public class AbilityDefinitionPoisonArrows extends AbilityDefinition
 	function presetStackingTypes(IntLevelClosure lc)
 		def.setLevelsDataInt("Poa5", lvls, 4, lc)
 		addTooltipProperty("Stacking Type", lc)
-
-	function presetStackingType(StackingType stackingType, boolean flag)
-		stackingTypesSet = stackingTypesSet.set(stackingType castTo int, flag)
-		presetStackingTypes(lvl -> stackingTypesSet.val)
-
-	function hasStackingType(StackingType stackingType) returns boolean
-		return stackingTypesSet.get(stackingType castTo int)
 
 	function setExtraDamage(int level, real value)
 		def.setLvlDataUnreal("Poa1", level, 1, value)
@@ -488,8 +479,6 @@ public class AbilityDefinitionPoisonArrows extends AbilityDefinition
 		addTooltipProperty("Damage per Second", lc)
 
 public class AbilityDefinitionRangerColdArrows extends AbilityDefinition
-	private bitset stackFlagsSet = bitset(7)
-
 	construct(int newAbilityId)
 		super(newAbilityId, AbilityIds.coldArrows)
 
@@ -499,14 +488,6 @@ public class AbilityDefinitionRangerColdArrows extends AbilityDefinition
 	function presetStackFlags(IntLevelClosure lc)
 		def.setLevelsDataInt("Hca4", lvls, 4, lc)
 		addTooltipProperty("Stack Flags", lc)
-
-	function presetStackFlag(StackFlag stackFlag, boolean flag)
-
-		stackFlagsSet = stackFlagsSet.set(stackFlag castTo int, flag)
-		presetStackFlags(lvl -> stackFlagsSet.val)
-
-	function hasStackFlag(StackFlag stackFlag) returns boolean
-		return stackFlagsSet.get(stackFlag castTo int)
 
 	function setExtraDamage(int level, real value)
 		def.setLvlDataUnreal("Hca1", level, 1, value)
@@ -1756,8 +1737,6 @@ public class AbilityDefinitionPaladinDevotionAura extends AbilityDefinition
 		addTooltipProperty("Armor Bonus", lc)
 
 public class AbilityDefinitionTinkererRoboGoblinLevel0 extends AbilityDefinition
-	private bitset morphingFlagsSet = bitset(1)
-
 	construct(int newAbilityId)
 		super(newAbilityId, AbilityIds.tinkererRoboGoblinLevel0)
 
@@ -1795,13 +1774,6 @@ public class AbilityDefinitionTinkererRoboGoblinLevel0 extends AbilityDefinition
 	function presetMorphingFlags(IntLevelClosure lc)
 		def.setLevelsDataInt("Eme2", lvls, 2, lc)
 		addTooltipProperty("Morphing Flags", lc)
-
-	function presetMorphingFlag(MorphingFlag morphingFlag, boolean flag)
-		morphingFlagsSet = morphingFlagsSet.set(morphingFlag castTo int, flag)
-		presetMorphingFlags(lvl -> morphingFlagsSet.val)
-
-	function hasMorphingFlag(MorphingFlag morphingFlag) returns boolean
-		return morphingFlagsSet.get(morphingFlag castTo int)
 
 	function setDefenseBonus(int level, int value)
 		def.setLvlDataInt("Nrg6", level, 6, value)
@@ -3426,8 +3398,6 @@ public class AbilityDefinitionItemDispelAoeWithCooldown extends AbilityDefinitio
 		addTooltipProperty("Mana Loss Per Unit", lc)
 
 public class AbilityDefinitionEvilIllidanMetamorphosis extends AbilityDefinition
-	private bitset morphingFlagsSet = bitset(1)
-
 	construct(int newAbilityId)
 		super(newAbilityId, AbilityIds.evilIllidanMetamorphosis)
 
@@ -3458,13 +3428,6 @@ public class AbilityDefinitionEvilIllidanMetamorphosis extends AbilityDefinition
 	function presetMorphingFlags(IntLevelClosure lc)
 		def.setLevelsDataInt("Eme2", lvls, 2, lc)
 		addTooltipProperty("Morphing Flags", lc)
-
-	function presetMorphingFlag(MorphingFlag morphingFlag, boolean flag)
-		morphingFlagsSet = morphingFlagsSet.set(morphingFlag castTo int, flag)
-		presetMorphingFlags(lvl -> morphingFlagsSet.val)
-
-	function hasMorphingFlag(MorphingFlag morphingFlag) returns boolean
-		return morphingFlagsSet.get(morphingFlag castTo int)
 
 	function setAlternateFormHitPointBonus(int level, real value)
 		def.setLvlDataUnreal("Eme5", level, 5, value)
@@ -4089,8 +4052,6 @@ public class AbilityDefinitionFigurineSkeleton extends AbilityDefinition
 		addTooltipProperty("SummonAmount1", lc)
 
 public class AbilityDefinitionSubmergeMyrmidon extends AbilityDefinition
-	private bitset morphingFlagsSet = bitset(1)
-
 	construct(int newAbilityId)
 		super(newAbilityId, AbilityIds.submergeMyrmidon)
 
@@ -4115,13 +4076,6 @@ public class AbilityDefinitionSubmergeMyrmidon extends AbilityDefinition
 		def.setLevelsDataInt("Eme2", lvls, 2, lc)
 		addTooltipProperty("Morphing Flags", lc)
 
-	function presetMorphingFlag(MorphingFlag morphingFlag, boolean flag)
-		morphingFlagsSet = morphingFlagsSet.set(morphingFlag castTo int, flag)
-		presetMorphingFlags(lvl -> morphingFlagsSet.val)
-
-	function hasMorphingFlag(MorphingFlag morphingFlag) returns boolean
-		return morphingFlagsSet.get(morphingFlag castTo int)
-
 	function setAlternateFormUnit(int level, string value)
 		def.setLvlDataString("Emeu", level, 0, value)
 
@@ -4130,8 +4084,6 @@ public class AbilityDefinitionSubmergeMyrmidon extends AbilityDefinition
 		addTooltipProperty("Alternate Form Unit", lc)
 
 public class AbilityDefinitionSubmergeRoyalGuard extends AbilityDefinition
-	private bitset morphingFlagsSet = bitset(1)
-
 	construct(int newAbilityId)
 		super(newAbilityId, AbilityIds.submergeRoyalGuard)
 
@@ -4155,13 +4107,6 @@ public class AbilityDefinitionSubmergeRoyalGuard extends AbilityDefinition
 	function presetMorphingFlags(IntLevelClosure lc)
 		def.setLevelsDataInt("Eme2", lvls, 2, lc)
 		addTooltipProperty("Morphing Flags", lc)
-
-	function presetMorphingFlag(MorphingFlag morphingFlag, boolean flag)
-		morphingFlagsSet = morphingFlagsSet.set(morphingFlag castTo int, flag)
-		presetMorphingFlags(lvl -> morphingFlagsSet.val)
-
-	function hasMorphingFlag(MorphingFlag morphingFlag) returns boolean
-		return morphingFlagsSet.get(morphingFlag castTo int)
 
 	function setAlternateFormUnit(int level, string value)
 		def.setLvlDataString("Emeu", level, 0, value)
@@ -4203,8 +4148,6 @@ public class AbilityDefinitionFigurineDoomGuard extends AbilityDefinition
 		addTooltipProperty("SummonAmount1", lc)
 
 public class AbilityDefinitionSubmergeSnapDragon extends AbilityDefinition
-	private bitset morphingFlagsSet = bitset(1)
-
 	construct(int newAbilityId)
 		super(newAbilityId, AbilityIds.submergeSnapDragon)
 
@@ -4228,13 +4171,6 @@ public class AbilityDefinitionSubmergeSnapDragon extends AbilityDefinition
 	function presetMorphingFlags(IntLevelClosure lc)
 		def.setLevelsDataInt("Eme2", lvls, 2, lc)
 		addTooltipProperty("Morphing Flags", lc)
-
-	function presetMorphingFlag(MorphingFlag morphingFlag, boolean flag)
-		morphingFlagsSet = morphingFlagsSet.set(morphingFlag castTo int, flag)
-		presetMorphingFlags(lvl -> morphingFlagsSet.val)
-
-	function hasMorphingFlag(MorphingFlag morphingFlag) returns boolean
-		return morphingFlagsSet.get(morphingFlag castTo int)
 
 	function setAlternateFormUnit(int level, string value)
 		def.setLvlDataString("Emeu", level, 0, value)
@@ -4320,8 +4256,6 @@ public class AbilityDefinitionIntelligenceBonusPlus1 extends AbilityDefinition
 		addTooltipProperty("Strength Bonus", lc)
 
 public class AbilityDefinitionBurrowscarablvl2 extends AbilityDefinition
-	private bitset morphingFlagsSet = bitset(1)
-
 	construct(int newAbilityId)
 		super(newAbilityId, AbilityIds.burrowscarablvl2)
 
@@ -4352,13 +4286,6 @@ public class AbilityDefinitionBurrowscarablvl2 extends AbilityDefinition
 	function presetMorphingFlags(IntLevelClosure lc)
 		def.setLevelsDataInt("Eme2", lvls, 2, lc)
 		addTooltipProperty("Morphing Flags", lc)
-
-	function presetMorphingFlag(MorphingFlag morphingFlag, boolean flag)
-		morphingFlagsSet = morphingFlagsSet.set(morphingFlag castTo int, flag)
-		presetMorphingFlags(lvl -> morphingFlagsSet.val)
-
-	function hasMorphingFlag(MorphingFlag morphingFlag) returns boolean
-		return morphingFlagsSet.get(morphingFlag castTo int)
 
 	function setAlternateFormUnit(int level, string value)
 		def.setLvlDataString("Emeu", level, 0, value)
@@ -4453,8 +4380,6 @@ public class AbilityDefinitionFirelordSummonLavaSpawn extends AbilityDefinition
 		addTooltipProperty("Split Attack Count", lc)
 
 public class AbilityDefinitionBurrowscarablvl3 extends AbilityDefinition
-	private bitset morphingFlagsSet = bitset(1)
-
 	construct(int newAbilityId)
 		super(newAbilityId, AbilityIds.burrowscarablvl3)
 
@@ -4485,13 +4410,6 @@ public class AbilityDefinitionBurrowscarablvl3 extends AbilityDefinition
 	function presetMorphingFlags(IntLevelClosure lc)
 		def.setLevelsDataInt("Eme2", lvls, 2, lc)
 		addTooltipProperty("Morphing Flags", lc)
-
-	function presetMorphingFlag(MorphingFlag morphingFlag, boolean flag)
-		morphingFlagsSet = morphingFlagsSet.set(morphingFlag castTo int, flag)
-		presetMorphingFlags(lvl -> morphingFlagsSet.val)
-
-	function hasMorphingFlag(MorphingFlag morphingFlag) returns boolean
-		return morphingFlagsSet.get(morphingFlag castTo int)
 
 	function setAlternateFormUnit(int level, string value)
 		def.setLvlDataString("Emeu", level, 0, value)
@@ -5012,8 +4930,6 @@ public class AbilityDefinitionHealingWardAIhw extends AbilityDefinition
 		addTooltipProperty("Ward Unit Type", lc)
 
 public class AbilityDefinitionIllidanMetamorphosis extends AbilityDefinition
-	private bitset morphingFlagsSet = bitset(1)
-
 	construct(int newAbilityId)
 		super(newAbilityId, AbilityIds.metamorphosis1)
 
@@ -5044,13 +4960,6 @@ public class AbilityDefinitionIllidanMetamorphosis extends AbilityDefinition
 	function presetMorphingFlags(IntLevelClosure lc)
 		def.setLevelsDataInt("Eme2", lvls, 2, lc)
 		addTooltipProperty("Morphing Flags", lc)
-
-	function presetMorphingFlag(MorphingFlag morphingFlag, boolean flag)
-		morphingFlagsSet = morphingFlagsSet.set(morphingFlag castTo int, flag)
-		presetMorphingFlags(lvl -> morphingFlagsSet.val)
-
-	function hasMorphingFlag(MorphingFlag morphingFlag) returns boolean
-		return morphingFlagsSet.get(morphingFlag castTo int)
 
 	function setAlternateFormHitPointBonus(int level, real value)
 		def.setLvlDataUnreal("Eme5", level, 5, value)
@@ -5635,8 +5544,6 @@ public class AbilityDefinitionMagicDefense extends AbilityDefinition
 		addTooltipProperty("Magic Damage Reduction", lc)
 
 public class AbilityDefinitionAvengerForm extends AbilityDefinition
-	private bitset morphingFlagsSet = bitset(31)
-
 	construct(int newAbilityId)
 		super(newAbilityId, AbilityIds.avengerForm)
 
@@ -5667,13 +5574,6 @@ public class AbilityDefinitionAvengerForm extends AbilityDefinition
 	function presetMorphingFlags(IntLevelClosure lc)
 		def.setLevelsDataInt("Eme2", lvls, 2, lc)
 		addTooltipProperty("Morphing Flags", lc)
-
-	function presetMorphingFlag(MorphingFlag morphingFlag, boolean flag)
-		morphingFlagsSet = morphingFlagsSet.set(morphingFlag castTo int, flag)
-		presetMorphingFlags(lvl -> morphingFlagsSet.val)
-
-	function hasMorphingFlag(MorphingFlag morphingFlag) returns boolean
-		return morphingFlagsSet.get(morphingFlag castTo int)
 
 	function setLifeRegenerationRatepersecond(int level, real value)
 		def.setLvlDataUnreal("ave5", level, 5, value)
@@ -5882,8 +5782,6 @@ public class AbilityDefinitionFirelordIncinerate extends AbilityDefinition
 		addTooltipProperty("Death Damage Half Area", lc)
 
 public class AbilityDefinitionBearform extends AbilityDefinition
-	private bitset morphingFlagsSet = bitset(1)
-
 	construct(int newAbilityId)
 		super(newAbilityId, AbilityIds.bearForm)
 
@@ -5914,13 +5812,6 @@ public class AbilityDefinitionBearform extends AbilityDefinition
 	function presetMorphingFlags(IntLevelClosure lc)
 		def.setLevelsDataInt("Eme2", lvls, 2, lc)
 		addTooltipProperty("Morphing Flags", lc)
-
-	function presetMorphingFlag(MorphingFlag morphingFlag, boolean flag)
-		morphingFlagsSet = morphingFlagsSet.set(morphingFlag castTo int, flag)
-		presetMorphingFlags(lvl -> morphingFlagsSet.val)
-
-	function hasMorphingFlag(MorphingFlag morphingFlag) returns boolean
-		return morphingFlagsSet.get(morphingFlag castTo int)
 
 	function setAlternateFormUnit(int level, string value)
 		def.setLvlDataString("Emeu", level, 0, value)
@@ -6394,7 +6285,6 @@ public class AbilityDefinitionCrushingWave extends AbilityDefinition
 		addTooltipProperty("Distance", lc)
 
 public class AbilityDefinitionColdArrowscreep extends AbilityDefinition
-	private bitset stackFlagsSet = bitset(0)
 	construct(int newAbilityId)
 		super(newAbilityId, AbilityIds.coldArrows1)
 
@@ -6404,14 +6294,6 @@ public class AbilityDefinitionColdArrowscreep extends AbilityDefinition
 	function presetStackFlags(IntLevelClosure lc)
 		def.setLevelsDataInt("Hca4", lvls, 4, lc)
 		addTooltipProperty("Stack Flags", lc)
-
-	function presetStackFlag(StackFlag stackFlag, boolean flag)
-
-		stackFlagsSet = stackFlagsSet.set(stackFlag castTo int, flag)
-		presetStackFlags(lvl -> stackFlagsSet.val)
-
-	function hasStackFlag(StackFlag stackFlag) returns boolean
-		return stackFlagsSet.get(stackFlag castTo int)
 
 	function setExtraDamage(int level, real value)
 		def.setLvlDataUnreal("Hca1", level, 1, value)
@@ -6622,8 +6504,6 @@ public class AbilityDefinitionItemManaRestoreLesser extends AbilityDefinition
 		addTooltipProperty("Mana Points Gained", lc)
 
 public class AbilityDefinitionStoneForm extends AbilityDefinition
-	private bitset morphingFlagsSet = bitset(7)
-
 	construct(int newAbilityId)
 		super(newAbilityId, AbilityIds.stoneForm)
 
@@ -6654,13 +6534,6 @@ public class AbilityDefinitionStoneForm extends AbilityDefinition
 	function presetMorphingFlags(IntLevelClosure lc)
 		def.setLevelsDataInt("Eme2", lvls, 2, lc)
 		addTooltipProperty("Morphing Flags", lc)
-
-	function presetMorphingFlag(MorphingFlag morphingFlag, boolean flag)
-		morphingFlagsSet = morphingFlagsSet.set(morphingFlag castTo int, flag)
-		presetMorphingFlags(lvl -> morphingFlagsSet.val)
-
-	function hasMorphingFlag(MorphingFlag morphingFlag) returns boolean
-		return morphingFlagsSet.get(morphingFlag castTo int)
 
 	function setLifeRegenerationRatepersecond(int level, real value)
 		def.setLvlDataUnreal("ave5", level, 5, value)
@@ -7292,7 +7165,6 @@ public class AbilityDefinitionMaxLifeBonusLeast extends AbilityDefinition
 		addTooltipProperty("Max Life Gained", lc)
 
 public class AbilityDefinitionParasite extends AbilityDefinition
-	private bitset stackingTypesSet = bitset(8)
 	construct(int newAbilityId)
 		super(newAbilityId, AbilityIds.parasite)
 
@@ -7302,13 +7174,6 @@ public class AbilityDefinitionParasite extends AbilityDefinition
 	function presetStackingTypes(IntLevelClosure lc)
 		def.setLevelsDataInt("Poi4", lvls, 4, lc)
 		addTooltipProperty("Stacking Type", lc)
-
-	function presetStackingType(StackingType stackingType, boolean flag)
-		stackingTypesSet = stackingTypesSet.set(stackingType castTo int, flag)
-		presetStackingTypes(lvl -> stackingTypesSet.val)
-
-	function hasStackingType(StackingType stackingType) returns boolean
-		return stackingTypesSet.get(stackingType castTo int)
 
 	function setSummonedUnitDuration(int level, real value)
 		def.setLvlDataUnreal("Npa6", level, 0, value)
@@ -7353,8 +7218,6 @@ public class AbilityDefinitionParasite extends AbilityDefinition
 		addTooltipProperty("Unit Type", lc)
 
 public class AbilityDefinitionDemonHunterMetamorphosis extends AbilityDefinition
-	private bitset morphingFlagsSet = bitset(1)
-
 	construct(int newAbilityId)
 		super(newAbilityId, AbilityIds.metamorphosis)
 
@@ -7385,12 +7248,6 @@ public class AbilityDefinitionDemonHunterMetamorphosis extends AbilityDefinition
 	function presetMorphingFlags(IntLevelClosure lc)
 		def.setLevelsDataInt("Eme2", lvls, 2, lc)
 		addTooltipProperty("Morphing Flags", lc)
-	function presetMorphingFlag(MorphingFlag morphingFlag, boolean flag)
-		morphingFlagsSet = morphingFlagsSet.set(morphingFlag castTo int, flag)
-		presetMorphingFlags(lvl -> morphingFlagsSet.val)
-
-	function hasMorphingFlag(MorphingFlag morphingFlag) returns boolean
-		return morphingFlagsSet.get(morphingFlag castTo int)
 
 	function setAlternateFormHitPointBonus(int level, real value)
 		def.setLvlDataUnreal("Eme5", level, 5, value)
@@ -7594,7 +7451,6 @@ public class AbilityDefinitionEvasioncreep100 extends AbilityDefinition
 		addTooltipProperty("Chance to Evade", lc)
 
 public class AbilityDefinitionVenomSpears extends AbilityDefinition
-	private bitset stackingTypesSet = bitset(1)
 	construct(int newAbilityId)
 		super(newAbilityId, AbilityIds.envenomedSpears)
 
@@ -7611,13 +7467,6 @@ public class AbilityDefinitionVenomSpears extends AbilityDefinition
 	function presetStackingTypes(IntLevelClosure lc)
 		def.setLevelsDataInt("Poi4", lvls, 4, lc)
 		addTooltipProperty("Stacking Type", lc)
-
-	function presetStackingType(StackingType stackingType, boolean flag)
-		stackingTypesSet = stackingTypesSet.set(stackingType castTo int, flag)
-		presetStackingTypes(lvl -> stackingTypesSet.val)
-
-	function hasStackingType(StackingType stackingType) returns boolean
-		return stackingTypesSet.get(stackingType castTo int)
 
 	function setDamageperSecond(int level, real value)
 		def.setLvlDataUnreal("Poi1", level, 1, value)
@@ -7667,8 +7516,6 @@ public class AbilityDefinitionMagicImmunityAImx extends AbilityDefinition
 		addTooltipProperty("Magic Damage Factor", lc)
 
 public class AbilityDefinitionBurrow extends AbilityDefinition
-	private bitset morphingFlagsSet = bitset(1)
-
 	construct(int newAbilityId)
 		super(newAbilityId, AbilityIds.burrow)
 
@@ -7699,13 +7546,6 @@ public class AbilityDefinitionBurrow extends AbilityDefinition
 	function presetMorphingFlags(IntLevelClosure lc)
 		def.setLevelsDataInt("Eme2", lvls, 2, lc)
 		addTooltipProperty("Morphing Flags", lc)
-
-	function presetMorphingFlag(MorphingFlag morphingFlag, boolean flag)
-		morphingFlagsSet = morphingFlagsSet.set(morphingFlag castTo int, flag)
-		presetMorphingFlags(lvl -> morphingFlagsSet.val)
-
-	function hasMorphingFlag(MorphingFlag morphingFlag) returns boolean
-		return morphingFlagsSet.get(morphingFlag castTo int)
 
 	function setAlternateFormUnit(int level, string value)
 		def.setLvlDataString("Emeu", level, 0, value)
@@ -7798,8 +7638,6 @@ public class AbilityDefinitionMoveSpeedBonus extends AbilityDefinition
 		addTooltipProperty("Movement Speed Bonus", lc)
 
 public class AbilityDefinitionPhoenix extends AbilityDefinition
-	private bitset morphingFlagsSet = bitset(7)
-
 	construct(int newAbilityId)
 		super(newAbilityId, AbilityIds.phoenix2)
 
@@ -7830,13 +7668,6 @@ public class AbilityDefinitionPhoenix extends AbilityDefinition
 	function presetMorphingFlags(IntLevelClosure lc)
 		def.setLevelsDataInt("Eme2", lvls, 2, lc)
 		addTooltipProperty("Morphing Flags", lc)
-
-	function presetMorphingFlag(MorphingFlag morphingFlag, boolean flag)
-		morphingFlagsSet = morphingFlagsSet.set(morphingFlag castTo int, flag)
-		presetMorphingFlags(lvl -> morphingFlagsSet.val)
-
-	function hasMorphingFlag(MorphingFlag morphingFlag) returns boolean
-		return morphingFlagsSet.get(morphingFlag castTo int)
 
 	function setAlternateFormUnit(int level, string value)
 		def.setLvlDataString("Emeu", level, 0, value)
@@ -9093,8 +8924,6 @@ public class AbilityDefinitionBashcreep extends AbilityDefinition
 		addTooltipProperty("Damage Multiplier", lc)
 
 public class AbilityDefinitionAlchemistChemicalRage extends AbilityDefinition
-	private bitset morphingFlagsSet = bitset(1)
-
 	construct(int newAbilityId)
 		super(newAbilityId, AbilityIds.alchemistChemicalRage)
 
@@ -9139,13 +8968,6 @@ public class AbilityDefinitionAlchemistChemicalRage extends AbilityDefinition
 	function presetMorphingFlags(IntLevelClosure lc)
 		def.setLevelsDataInt("Eme2", lvls, 2, lc)
 		addTooltipProperty("Morphing Flags", lc)
-
-	function presetMorphingFlag(MorphingFlag morphingFlag, boolean flag)
-		morphingFlagsSet = morphingFlagsSet.set(morphingFlag castTo int, flag)
-		presetMorphingFlags(lvl -> morphingFlagsSet.val)
-
-	function hasMorphingFlag(MorphingFlag morphingFlag) returns boolean
-		return morphingFlagsSet.get(morphingFlag castTo int)
 
 	function setAlternateFormUnit(int level, string value)
 		def.setLvlDataString("Emeu", level, 0, value)
@@ -9659,8 +9481,6 @@ public class AbilityDefinitionWardenBlink extends AbilityDefinition
 		addTooltipProperty("Minimum Range", lc)
 
 public class AbilityDefinitionPoisonAttack extends AbilityDefinition
-	private bitset stackingTypesSet = bitset(1)
-
 	construct(int newAbilityId)
 		super(newAbilityId, AbilityIds.poisonSting)
 
@@ -9677,13 +9497,6 @@ public class AbilityDefinitionPoisonAttack extends AbilityDefinition
 	function presetStackingTypes(IntLevelClosure lc)
 		def.setLevelsDataInt("Poi4", lvls, 4, lc)
 		addTooltipProperty("Stacking Type", lc)
-
-	function presetStackingType(StackingType stackingType, boolean flag)
-		stackingTypesSet = stackingTypesSet.set(stackingType castTo int, flag)
-		presetStackingTypes(lvl -> stackingTypesSet.val)
-
-	function hasStackingType(StackingType stackingType) returns boolean
-		return stackingTypesSet.get(stackingType castTo int)
 
 	function setDamageperSecond(int level, real value)
 		def.setLvlDataUnreal("Poi1", level, 1, value)
@@ -10566,7 +10379,6 @@ public class AbilityDefinitionRuneofSpiritLink extends AbilityDefinition
 		addTooltipProperty("Distributed Damage Factor", lc)
 
 public class AbilityDefinitionSlowPoison extends AbilityDefinition
-	private bitset stackingTypesSet = bitset(1)
 	construct(int newAbilityId)
 		super(newAbilityId, AbilityIds.slowPoison)
 
@@ -10583,13 +10395,6 @@ public class AbilityDefinitionSlowPoison extends AbilityDefinition
 	function presetStackingTypes(IntLevelClosure lc)
 		def.setLevelsDataInt("Spo4", lvls, 4, lc)
 		addTooltipProperty("Stacking Type", lc)
-
-	function presetStackingType(StackingType stackingType, boolean flag)
-		stackingTypesSet = stackingTypesSet.set(stackingType castTo int, flag)
-		presetStackingTypes(lvl -> stackingTypesSet.val)
-
-	function hasStackingType(StackingType stackingType) returns boolean
-		return stackingTypesSet.get(stackingType castTo int)
 
 	function setAttackSpeedFactor(int level, real value)
 		def.setLvlDataUnreal("Spo3", level, 3, value)
@@ -10728,8 +10533,6 @@ public class AbilityDefinitionSpawnHydra extends AbilityDefinition
 		addTooltipProperty("Unit Type", lc)
 
 public class AbilityDefinitionAspx extends AbilityDefinition
-	private bitset morphingFlagsSet = bitset(1)
-
 	construct(int newAbilityId)
 		super(newAbilityId, AbilityIds.aspx)
 
@@ -10760,13 +10563,6 @@ public class AbilityDefinitionAspx extends AbilityDefinition
 	function presetMorphingFlags(IntLevelClosure lc)
 		def.setLevelsDataInt("Eme2", lvls, 2, lc)
 		addTooltipProperty("Morphing Flags", lc)
-
-	function presetMorphingFlag(MorphingFlag morphingFlag, boolean flag)
-		morphingFlagsSet = morphingFlagsSet.set(morphingFlag castTo int, flag)
-		presetMorphingFlags(lvl -> morphingFlagsSet.val)
-
-	function hasMorphingFlag(MorphingFlag morphingFlag) returns boolean
-		return morphingFlagsSet.get(morphingFlag castTo int)
 
 	function setAlternateFormUnit(int level, string value)
 		def.setLvlDataString("Emeu", level, 0, value)
@@ -10929,7 +10725,6 @@ public class AbilityDefinitionItemPotionVampirism extends AbilityDefinition
 		addTooltipProperty("Life Steal Amount", lc)
 
 public class AbilityDefinitionOrbofVenomPoisonAttack extends AbilityDefinition
-	private bitset stackingTypesSet = bitset(1)
 	construct(int newAbilityId)
 		super(newAbilityId, AbilityIds.orbofVenomPoisonAttack)
 
@@ -10946,13 +10741,6 @@ public class AbilityDefinitionOrbofVenomPoisonAttack extends AbilityDefinition
 	function presetStackingTypes(IntLevelClosure lc)
 		def.setLevelsDataInt("Poi4", lvls, 4, lc)
 		addTooltipProperty("Stacking Type", lc)
-
-	function presetStackingType(StackingType stackingType, boolean flag)
-		stackingTypesSet = stackingTypesSet.set(stackingType castTo int, flag)
-		presetStackingTypes(lvl -> stackingTypesSet.val)
-
-	function hasStackingType(StackingType stackingType) returns boolean
-		return stackingTypesSet.get(stackingType castTo int)
 
 	function setDamageperSecond(int level, real value)
 		def.setLvlDataUnreal("Poi1", level, 1, value)
@@ -12213,8 +12001,6 @@ public class AbilityDefinitionBattlestationsChaos extends AbilityDefinition
 		addTooltipProperty("Allowed Unit Type", lc)
 
 public class AbilityDefinitionCorporealForm extends AbilityDefinition
-	private bitset morphingFlagsSet = bitset(1)
-
 	construct(int newAbilityId)
 		super(newAbilityId, AbilityIds.corporealForm)
 
@@ -12245,13 +12031,6 @@ public class AbilityDefinitionCorporealForm extends AbilityDefinition
 	function presetMorphingFlags(IntLevelClosure lc)
 		def.setLevelsDataInt("Eme2", lvls, 2, lc)
 		addTooltipProperty("Morphing Flags", lc)
-
-	function presetMorphingFlag(MorphingFlag morphingFlag, boolean flag)
-		morphingFlagsSet = morphingFlagsSet.set(morphingFlag castTo int, flag)
-		presetMorphingFlags(lvl -> morphingFlagsSet.val)
-
-	function hasMorphingFlag(MorphingFlag morphingFlag) returns boolean
-		return morphingFlagsSet.get(morphingFlag castTo int)
 
 	function setAlternateFormUnit(int level, string value)
 		def.setLvlDataString("Emeu", level, 0, value)
@@ -12901,8 +12680,6 @@ public class AbilityDefinitionItemTownPortal extends AbilityDefinition
 		addTooltipProperty("Use Teleport Clustering", lc)
 
 public class AbilityDefinitionTinkererRoboGoblinLevel1 extends AbilityDefinition
-	private bitset morphingFlagsSet = bitset(1)
-
 	construct(int newAbilityId)
 		super(newAbilityId, AbilityIds.tinkererRoboGoblinLevel1)
 
@@ -12940,13 +12717,6 @@ public class AbilityDefinitionTinkererRoboGoblinLevel1 extends AbilityDefinition
 	function presetMorphingFlags(IntLevelClosure lc)
 		def.setLevelsDataInt("Eme2", lvls, 2, lc)
 		addTooltipProperty("Morphing Flags", lc)
-
-	function presetMorphingFlag(MorphingFlag morphingFlag, boolean flag)
-		morphingFlagsSet = morphingFlagsSet.set(morphingFlag castTo int, flag)
-		presetMorphingFlags(lvl -> morphingFlagsSet.val)
-
-	function hasMorphingFlag(MorphingFlag morphingFlag) returns boolean
-		return morphingFlagsSet.get(morphingFlag castTo int)
 
 	function setDefenseBonus(int level, int value)
 		def.setLvlDataInt("Nrg6", level, 6, value)
@@ -13088,8 +12858,6 @@ public class AbilityDefinitionAttackBonusPlus10 extends AbilityDefinition
 		addTooltipProperty("Attack Bonus", lc)
 
 public class AbilityDefinitionTinkererRoboGoblinLevel3 extends AbilityDefinition
-	private bitset morphingFlagsSet = bitset(1)
-
 	construct(int newAbilityId)
 		super(newAbilityId, AbilityIds.tinkererRoboGoblinLevel3)
 
@@ -13127,13 +12895,6 @@ public class AbilityDefinitionTinkererRoboGoblinLevel3 extends AbilityDefinition
 	function presetMorphingFlags(IntLevelClosure lc)
 		def.setLevelsDataInt("Eme2", lvls, 2, lc)
 		addTooltipProperty("Morphing Flags", lc)
-
-	function presetMorphingFlag(MorphingFlag morphingFlag, boolean flag)
-		morphingFlagsSet = morphingFlagsSet.set(morphingFlag castTo int, flag)
-		presetMorphingFlags(lvl -> morphingFlagsSet.val)
-
-	function hasMorphingFlag(MorphingFlag morphingFlag) returns boolean
-		return morphingFlagsSet.get(morphingFlag castTo int)
 
 	function setDefenseBonus(int level, int value)
 		def.setLvlDataInt("Nrg6", level, 6, value)
@@ -13214,8 +12975,6 @@ public class AbilityDefinitionAroo extends AbilityDefinition
 		addTooltipProperty("Rooted Weapons", lc)
 
 public class AbilityDefinitionTinkererRoboGoblinLevel2 extends AbilityDefinition
-	private bitset morphingFlagsSet = bitset(1)
-
 	construct(int newAbilityId)
 		super(newAbilityId, AbilityIds.tinkererRoboGoblinLevel2)
 
@@ -13253,13 +13012,6 @@ public class AbilityDefinitionTinkererRoboGoblinLevel2 extends AbilityDefinition
 	function presetMorphingFlags(IntLevelClosure lc)
 		def.setLevelsDataInt("Eme2", lvls, 2, lc)
 		addTooltipProperty("Morphing Flags", lc)
-
-	function presetMorphingFlag(MorphingFlag morphingFlag, boolean flag)
-		morphingFlagsSet = morphingFlagsSet.set(morphingFlag castTo int, flag)
-		presetMorphingFlags(lvl -> morphingFlagsSet.val)
-
-	function hasMorphingFlag(MorphingFlag morphingFlag) returns boolean
-		return morphingFlagsSet.get(morphingFlag castTo int)
 
 	function setDefenseBonus(int level, int value)
 		def.setLvlDataInt("Nrg6", level, 6, value)
@@ -14189,8 +13941,6 @@ public class AbilityDefinitionAttackBonusPlus1 extends AbilityDefinition
 		addTooltipProperty("Attack Bonus", lc)
 
 public class AbilityDefinitionSeaWitchFrostArrows extends AbilityDefinition
-	private bitset stackFlagsSet = bitset(7)
-
 	construct(int newAbilityId)
 		super(newAbilityId, AbilityIds.seaWitchFrostArrows)
 
@@ -14200,14 +13950,6 @@ public class AbilityDefinitionSeaWitchFrostArrows extends AbilityDefinition
 	function presetStackFlags(IntLevelClosure lc)
 		def.setLevelsDataInt("Hca4", lvls, 4, lc)
 		addTooltipProperty("Stack Flags", lc)
-
-	function presetStackFlag(StackFlag stackFlag, boolean flag)
-
-		stackFlagsSet = stackFlagsSet.set(stackFlag castTo int, flag)
-		presetStackFlags(lvl -> stackFlagsSet.val)
-
-	function hasStackFlag(StackFlag stackFlag) returns boolean
-		return stackFlagsSet.get(stackFlag castTo int)
 
 	function setExtraDamage(int level, real value)
 		def.setLvlDataUnreal("Hca1", level, 1, value)
@@ -14600,8 +14342,6 @@ public class AbilityDefinitionFreezeDamageBonus extends AbilityDefinition
 		addTooltipProperty("Damage Bonus", lc)
 
 public class AbilityDefinitionEtherealForm extends AbilityDefinition
-	private bitset morphingFlagsSet = bitset(1)
-
 	construct(int newAbilityId)
 		super(newAbilityId, AbilityIds.etherealForm)
 
@@ -14633,13 +14373,6 @@ public class AbilityDefinitionEtherealForm extends AbilityDefinition
 		def.setLevelsDataInt("Eme2", lvls, 2, lc)
 		addTooltipProperty("Morphing Flags", lc)
 
-	function presetMorphingFlag(MorphingFlag morphingFlag, boolean flag)
-		morphingFlagsSet = morphingFlagsSet.set(morphingFlag castTo int, flag)
-		presetMorphingFlags(lvl -> morphingFlagsSet.val)
-
-	function hasMorphingFlag(MorphingFlag morphingFlag) returns boolean
-		return morphingFlagsSet.get(morphingFlag castTo int)
-
 	function setAlternateFormUnit(int level, string value)
 		def.setLvlDataString("Emeu", level, 0, value)
 
@@ -14666,8 +14399,6 @@ public class AbilityDefinitionDetonate extends AbilityDefinition
 		addTooltipProperty("Mana Loss per unit", lc)
 
 public class AbilityDefinitionRavenFormMedivh extends AbilityDefinition
-	private bitset morphingFlagsSet = bitset(5)
-
 	construct(int newAbilityId)
 		super(newAbilityId, AbilityIds.crowForm)
 
@@ -14698,13 +14429,6 @@ public class AbilityDefinitionRavenFormMedivh extends AbilityDefinition
 	function presetMorphingFlags(IntLevelClosure lc)
 		def.setLevelsDataInt("Eme2", lvls, 2, lc)
 		addTooltipProperty("Morphing Flags", lc)
-
-	function presetMorphingFlag(MorphingFlag morphingFlag, boolean flag)
-		morphingFlagsSet = morphingFlagsSet.set(morphingFlag castTo int, flag)
-		presetMorphingFlags(lvl -> morphingFlagsSet.val)
-
-	function hasMorphingFlag(MorphingFlag morphingFlag) returns boolean
-		return morphingFlagsSet.get(morphingFlag castTo int)
 
 	function setAlternateFormUnit(int level, string value)
 		def.setLvlDataString("Emeu", level, 0, value)
@@ -14961,8 +14685,6 @@ public class AbilityDefinitionAbolishMagic extends AbilityDefinition
 		addTooltipProperty("Summoned Unit Damage", lc)
 
 public class AbilityDefinitionRavenFormDruidoftheTalon extends AbilityDefinition
-	private bitset morphingFlagsSet = bitset(5)
-
 	construct(int newAbilityId)
 		super(newAbilityId, AbilityIds.stormCrowForm)
 
@@ -14993,13 +14715,6 @@ public class AbilityDefinitionRavenFormDruidoftheTalon extends AbilityDefinition
 	function presetMorphingFlags(IntLevelClosure lc)
 		def.setLevelsDataInt("Eme2", lvls, 2, lc)
 		addTooltipProperty("Morphing Flags", lc)
-
-	function presetMorphingFlag(MorphingFlag morphingFlag, boolean flag)
-		morphingFlagsSet = morphingFlagsSet.set(morphingFlag castTo int, flag)
-		presetMorphingFlags(lvl -> morphingFlagsSet.val)
-
-	function hasMorphingFlag(MorphingFlag morphingFlag) returns boolean
-		return morphingFlagsSet.get(morphingFlag castTo int)
 
 	function setAlternateFormUnit(int level, string value)
 		def.setLvlDataString("Emeu", level, 0, value)
@@ -16033,7 +15748,6 @@ public class AbilityDefinitionVampiricAuracreep extends AbilityDefinition
 		addTooltipProperty("Attack Damage Stolen", lc)
 
 public class AbilityDefinitionVenomSpearsCreep extends AbilityDefinition
-	private bitset stackingTypesSet = bitset(1)
 	construct(int newAbilityId)
 		super(newAbilityId, AbilityIds.envenomedWeapons)
 
@@ -16050,13 +15764,6 @@ public class AbilityDefinitionVenomSpearsCreep extends AbilityDefinition
 	function presetStackingTypes(IntLevelClosure lc)
 		def.setLevelsDataInt("Poi4", lvls, 4, lc)
 		addTooltipProperty("Stacking Type", lc)
-
-	function presetStackingType(StackingType stackingType, boolean flag)
-		stackingTypesSet = stackingTypesSet.set(stackingType castTo int, flag)
-		presetStackingTypes(lvl -> stackingTypesSet.val)
-
-	function hasStackingType(StackingType stackingType) returns boolean
-		return stackingTypesSet.get(stackingType castTo int)
 
 	function setDamageperSecond(int level, real value)
 		def.setLvlDataUnreal("Poi1", level, 1, value)
@@ -16192,8 +15899,6 @@ public class AbilityDefinitionChaosCargoLoad extends AbilityDefinition
 		addTooltipProperty("Unit Type Allowed", lc)
 
 public class AbilityDefinitionSunderingBlades extends AbilityDefinition
-	private bitset armorTypes = bitset(1)
-
 	construct(int newAbilityId)
 		super(newAbilityId, AbilityIds.sunderingBlades)
 
@@ -16217,10 +15922,3 @@ public class AbilityDefinitionSunderingBlades extends AbilityDefinition
 	function presetDefenseTypeAffected(IntLevelClosure lc)
 		def.setLevelsDataInt("Poi4", lvls, 4, lc)
 		addTooltipProperty("Defense Type Affected", lc)
-
-	function presetDefenseTypeAffected(ArmorType atype, boolean flag)
-		armorTypes = armorTypes.set(atype castTo int, flag)
-		presetDefenseTypeAffected(lvl -> armorTypes.val)
-
-	function hasStackingType(StackingType stackingType) returns boolean
-		return armorTypes.get(stackingType castTo int)

@@ -45,7 +45,7 @@ public function enableDamageDetect()
 
 /** Periodic Cleanup-Function */
 function swap()
-	let isEnabled = IsTriggerEnabled(current)
+	boolean b = IsTriggerEnabled(current)
 
 	current.disable()
 	if toDestroy != null
@@ -54,12 +54,13 @@ function swap()
 	toDestroy = current
 	current = CreateTrigger()
 
-	if not isEnabled
+	if not b
 		current.disable()
 
-	ENUM_GROUP.enumUnitsAll(filter)
+	for i = 0 to bj_MAX_PLAYER_SLOTS - 1
+		GroupEnumUnitsOfPlayer(ENUM_GROUP, players[i], filter)
 
-	for i = 0 to funcNext - 1
+	for i = 0 to funcNext-1
 		current.addCondition(func[i])
 
 init
